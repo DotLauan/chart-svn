@@ -9,17 +9,23 @@ metadata:
 spec:
   ports:
     - name: http-admin
+      {{- if eq .Values.subversion.service.type "NodePort" }}
       nodePort: {{ .Values.subversion.service.nodeProts.http }}
+      {{- end }}
       port: 3343
       protocol: TCP
       targetPort: 3343
     - name: https-admin
+      {{- if eq .Values.subversion.service.type "NodePort" }}
       nodePort: {{ .Values.subversion.service.nodeProts.https }}
+      {{- end }}
       port: 4434
       protocol: TCP
       targetPort: 4434
     - name: http-svn
+      {{- if eq .Values.subversion.service.type "NodePort" }}
       nodePort: {{ .Values.subversion.service.nodeProts.svn }}
+      {{- end }}
       port: 18080
       protocol: TCP
       targetPort: 18080
